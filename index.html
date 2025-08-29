@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Luxury Hotel Menu | Digital Access</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+    <style>
+        :root {
+            --primary: #2c3e50;
+            --secondary: #a67c52;
+            --accent: #e67e22;
+            --light: #f8f5f0;
+            --dark: #333;
+            --gray: #7f8c8d;
+            --white: #ffffff;
+            --shadow: 0 4px 20px rgba(0,0,0,0.08);
+            --border-radius: 12px;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, var(--light) 0%, #e3dfd7 100%);
+            color: var(--dark);
+            line-height: 1.6;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+        }
+        
+        @media (max-width: 900px) {
+            .container {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        header {
+            grid-column: 1 / -1;
+            text-align: center;
+            padding: 40px 20px;
+            background: var(--primary);
+            color: var(--white);
+            border-radius: var(--border-radius);
+            margin-bottom: 20px;
+            box-shadow: var(--shadow);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--accent);
+        }
+        
+        h1 {
+            font-size: 2.8rem;
+            margin-bottom: 15px;
+            font-weight: 300;
+            letter-spacing: 1px;
+        }
+        
+        .subtitle {
+            color: var(--light);
+            font-size: 1.2rem;
+            font-weight: 300;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .card {
+            background: var(--white);
+            border-radius: var(--border-radius);
+            padding: 30px;
+            box-shadow: var(--shadow);
+            height: fit-content;
+            transition: transform 0.3s ease;
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .card-title {
+            font-size: 1.5rem;
+            color: var(--primary);
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid var(--light);
+            display: flex;
+            align-items: center;
+        }
+        
+        .card-title i {
+            margin-right: 12px;
+            color: var(--secondary);
+        }
+        
+        .pdf-container {
+            width: 100%;
+            height: 500px;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+        
+        .pdf-container iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+        
+        .qr-section {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            text-align: center;
+        }
+        
+        #qrcode {
+            margin: 20px 0;
+            padding: 15px;
+            background: var(--white);
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+        }
+        
+        .action-buttons {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            background: var(--primary);
+            color: var(--white);
+            padding: 12px 24px;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .btn:hover {
+            background: var(--secondary);
+            transform: translateY(-2px);
+        }
+        
+        .btn i {
+            margin-right: 8px;
+        }
+        
+        .btn-secondary {
+            background: var(--light);
+            color: var(--dark);
+        }
+        
+        .btn-secondary:hover {
+            background: #e8e4db;
+        }
+        
+        .instructions {
+            margin-top: 30px;
+        }
+        
+        .instructions ol {
+            padding-left: 20px;
+            margin: 15px 0;
+        }
+        
+        .instructions li {
+            margin-bottom: 12px;
+            line-height: 1.5;
+        }
+        
+        .info-box {
+            background: #f9f9f9;
+            border-left: 4px solid var(--accent);
+            padding: 15px 20px;
+            margin: 20px 0;
+            border-radius: 4px;
+        }
+        
+        .github-info {
+            background: #f5f5f5;
+            border-radius: var(--border-radius);
+            padding: 20px;
+            margin-top: 30px;
+            grid-column: 1 / -1;
+        }
+        
+        footer {
+            grid-column: 1 / -1;
+            text-align: center;
+            margin-top: 40px;
+            padding: 30px;
+            color: var(--gray);
+            font-size: 0.9rem;
+            border-top: 1px solid #eee;
+        }
+        
+        .hotel-contact {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 15px;
+            flex-wrap: wrap;
+        }
+        
+        .hotel-contact div {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        /* Print styles */
+        @media print {
+            body {
+                background: white;
+            }
+            
+            .container {
+                grid-template-columns: 1fr;
+                max-width: 100%;
+            }
+            
+            .card {
+                box-shadow: none;
+                border: 1px solid #ddd;
+            }
+            
+            .action-buttons, footer, .github-info {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>LUXURY HOTEL & RESORT</h1>
+            <p class="subtitle">Exquisite dining experience with our curated menu selection</p>
+        </header>
+        
+        <div class="card">
+            <h2 class="card-title"><i class="fas fa-utensils"></i> Our Menu</h2>
+            <div class="pdf-container">
+                <!-- Replace with your actual PDF URL -->
+                <iframe src="https://drive.google.com/file/d/1f0w_QTmtV6k5rB6x2rZqJfXr7q9zM1bV/preview" allow="autoplay"></iframe>
+            </div>
+            <div class="action-buttons">
+                <a href="https://drive.google.com/file/d/1f0w_QTmtV6k5rB6x2rZqJfXr7q9zM1bV/preview" class="btn" download>
+                    <i class="fas fa-download"></i> Download Menu
+                </a>
+                <button class="btn btn-secondary" onclick="window.print()">
+                    <i class="fas fa-print"></i> Print Menu
+                </button>
+            </div>
+        </div>
+        
+        <div class="card">
+            <h2 class="card-title"><i class="fas fa-qrcode"></i> QR Code Access</h2>
+            <div class="qr-section">
+                <div id="qrcode"></div>
+                <p>Scan this code to access our menu directly on your mobile device</p>
+            </div>
+            
+            <div class="instructions">
+                <h3 class="card-title"><i class="fas fa-info-circle"></i> How to Use</h3>
+                <ol>
+                    <li>Open your smartphone's camera app</li>
+                    <li>Point it at the QR code shown above</li>
+                    <li>Tap the notification that appears on your screen</li>
+                    <li>The menu will open in your browser instantly</li>
+                </ol>
+                
+                <div class="info-box">
+                    <p><strong>Professional Tip:</strong> Print and frame the QR code to place on tables, at the reception, and in guest rooms for easy access.</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="github-info">
+            <h3 class="card-title"><i class="fab fa-github"></i> Hosted on GitHub Pages</h3>
+            <p>This menu is hosted for free using GitHub Pages, providing reliable and fast access for your guests from anywhere in the world.</p>
+            <p>To update the menu, simply upload a new PDF file and update the URL in the code.</p>
+        </div>
+        
+        <footer>
+            <p>© 2023 Luxury Hotel & Resort. All rights reserved.</p>
+            <div class="hotel-contact">
+                <div><i class="fas fa-phone"></i> +1 (555) 123-4567</div>
+                <div><i class="fas fa-envelope"></i> info@luxuryhotel.com</div>
+                <div><i class="fas fa-map-marker-alt"></i> 123 Luxury Avenue, Resort City</div>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Replace with your actual PDF URL
+            const pdfUrl = 'https://drive.google.com/file/d/1f0w_QTmtV6k5rB6x2rZqJfXr7q9zM1bV/preview';
+            
+            // Generate QR Code
+            const qrcode = new QRCode(document.getElementById("qrcode"), {
+                text: pdfUrl,
+                width: 200,
+                height: 200,
+                colorDark : "#2c3e50",
+                colorLight : "#ffffff",
+                correctLevel : QRCode.CorrectLevel.H
+            });
+            
+            // Make download button actually download the PDF
+            const downloadBtn = document.querySelector('.btn');
+            downloadBtn.addEventListener('click', function(e) {
+                // For demonstration purposes - in reality, this would point to your PDF
+                e.preventDefault();
+                alert('In a real implementation, this would download the PDF file.');
+            });
+        });
+    </script>
+</body>
+</html>
