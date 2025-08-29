@@ -244,6 +244,13 @@
             gap: 8px;
         }
         
+        .access-note {
+            color: var(--accent);
+            font-weight: 600;
+            margin-top: 15px;
+            text-align: center;
+        }
+        
         /* Print styles */
         @media print {
             body {
@@ -276,17 +283,18 @@
         <div class="card">
             <h2 class="card-title"><i class="fas fa-utensils"></i> Our Menu</h2>
             <div class="pdf-container">
-                <!-- Replace with your actual PDF URL -->
-                <iframe src="https://drive.google.com/file/d/1NsfyUYeJO-6ApVnS4TgMqkT9kgTXcbkT/preview?usp=sharing" allow="autoplay"></iframe>
+                <!-- Using the direct PDF embedding URL format -->
+                <iframe src="https://drive.google.com/file/d/1NsfyUYeJO-6ApVnS4TgMqkT9kgTXcbkT/preview" allow="autoplay"></iframe>
             </div>
             <div class="action-buttons">
-                <a href="https://drive.google.com/file/d/1NsfyUYeJO-6ApVnS4TgMqkT9kgTXcbkT/preview?usp=sharing" class="btn" download>
+                <a href="https://drive.google.com/uc?export=download&id=1NsfyUYeJO-6ApVnS4TgMqkT9kgTXcbkT" class="btn">
                     <i class="fas fa-download"></i> Download Menu
                 </a>
                 <button class="btn btn-secondary" onclick="window.print()">
                     <i class="fas fa-print"></i> Print Menu
                 </button>
             </div>
+            <p class="access-note">If you can't see the menu above, <a href="https://drive.google.com/file/d/1NsfyUYeJO-6ApVnS4TgMqkT9kgTXcbkT/view" target="_blank">click here to open it directly</a>.</p>
         </div>
         
         <div class="card">
@@ -329,8 +337,8 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            // Replace with your actual PDF URL
-            const pdfUrl = 'https://drive.google.com/file/d/1NsfyUYeJO-6ApVnS4TgMqkT9kgTXcbkT/preview?usp=sharing';
+            // Use the direct PDF URL for embedding
+            const pdfUrl = 'https://drive.google.com/file/d/1NsfyUYeJO-6ApVnS4TgMqkT9kgTXcbkT/preview';
             
             // Generate QR Code
             const qrcode = new QRCode(document.getElementById("qrcode"), {
@@ -340,14 +348,6 @@
                 colorDark : "#2c3e50",
                 colorLight : "#ffffff",
                 correctLevel : QRCode.CorrectLevel.H
-            });
-            
-            // Make download button actually download the PDF
-            const downloadBtn = document.querySelector('.btn');
-            downloadBtn.addEventListener('click', function(e) {
-                // For demonstration purposes - in reality, this would point to your PDF
-                e.preventDefault();
-                alert('In a real implementation, this would download the PDF file.');
             });
         });
     </script>
