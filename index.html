@@ -150,6 +150,17 @@
             background: var(--white);
             border-radius: 10px;
             box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            position: relative;
+            width: 230px;
+            height: 230px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        #qr-canvas {
+            width: 200px !important;
+            height: 200px !important;
         }
         
         .action-buttons {
@@ -376,19 +387,31 @@
             
             // Add download functionality for QR code
             document.getElementById('downloadQR').addEventListener('click', function() {
-                // Get the QR code element
-                const qrElement = document.getElementById('qrcode');
+                // Get the QR code canvas element
+                const qrCanvas = document.querySelector('#qrcode canvas');
                 
-                // Use dom-to-image to capture the QR code as PNG
-                domtoimage.toBlob(qrElement)
-                    .then(function(blob) {
-                        // Use FileSaver to save the image
-                        saveAs(blob, 'hotel-menu-qr-code.png');
-                    })
-                    .catch(function(error) {
-                        console.error('Error generating QR code image:', error);
-                        alert('Error downloading QR code. Please try again.');
-                    });
+                // Create a new canvas for the perfect square
+                const tempCanvas = document.createElement('canvas');
+                const tempCtx = tempCanvas.getContext('2d');
+                
+                // Set dimensions for perfect square
+                const size = 250;
+                tempCanvas.width = size;
+                tempCanvas.height = size;
+                
+                // Fill with white background
+                tempCtx.fillStyle = '#ffffff';
+                tempCtx.fillRect(0, 0, size, size);
+                
+                // Draw the QR code in the center
+                const qrSize = 200;
+                const offset = (size - qrSize) / 2;
+                tempCtx.drawImage(qrCanvas, offset, offset, qrSize, qrSize);
+                
+                // Convert to blob and download
+                tempCanvas.toBlob(function(blob) {
+                    saveAs(blob, 'hotel-menu-qr-code.png');
+                });
             });
         });
     </script>
