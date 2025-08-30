@@ -6,6 +6,8 @@
     <title>Luxury Hotel Menu | Digital Access</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/dom-to-image/2.6.0/dom-to-image.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
     <style>
         :root {
             --primary: #2c3e50;
@@ -190,6 +192,14 @@
             background: #e8e4db;
         }
         
+        .btn-success {
+            background: #27ae60;
+        }
+        
+        .btn-success:hover {
+            background: #219653;
+        }
+        
         .instructions {
             margin-top: 30px;
         }
@@ -251,6 +261,13 @@
             text-align: center;
         }
         
+        .download-info {
+            margin-top: 15px;
+            font-size: 0.9rem;
+            color: var(--gray);
+            text-align: center;
+        }
+        
         /* Print styles */
         @media print {
             body {
@@ -302,6 +319,13 @@
             <div class="qr-section">
                 <div id="qrcode"></div>
                 <p>Scan this code to access our menu directly on your mobile device</p>
+                
+                <div class="action-buttons">
+                    <button id="downloadQR" class="btn btn-success">
+                        <i class="fas fa-download"></i> Download QR Code
+                    </button>
+                </div>
+                <p class="download-info">Download the QR code to print and display in your hotel</p>
             </div>
             
             <div class="instructions">
@@ -348,6 +372,23 @@
                 colorDark : "#2c3e50",
                 colorLight : "#ffffff",
                 correctLevel : QRCode.CorrectLevel.H
+            });
+            
+            // Add download functionality for QR code
+            document.getElementById('downloadQR').addEventListener('click', function() {
+                // Get the QR code element
+                const qrElement = document.getElementById('qrcode');
+                
+                // Use dom-to-image to capture the QR code as PNG
+                domtoimage.toBlob(qrElement)
+                    .then(function(blob) {
+                        // Use FileSaver to save the image
+                        saveAs(blob, 'hotel-menu-qr-code.png');
+                    })
+                    .catch(function(error) {
+                        console.error('Error generating QR code image:', error);
+                        alert('Error downloading QR code. Please try again.');
+                    });
             });
         });
     </script>
