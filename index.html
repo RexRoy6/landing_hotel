@@ -312,17 +312,17 @@
             <h2 class="card-title"><i class="fas fa-utensils"></i> Our Menu</h2>
             <div class="pdf-container">
                 <!-- Using the local PDF file -->
-                <iframe src="menú ray tamaño carta-1.pdf" type="application/pdf"></iframe>
+                <iframe src="menu.pdf" type="application/pdf"></iframe>
             </div>
             <div class="action-buttons">
-                <a href="menú ray tamaño carta-1.pdf" download class="btn">
+                <a href="menu.pdf" download class="btn">
                     <i class="fas fa-download"></i> Download Menu
                 </a>
                 <button class="btn btn-secondary" onclick="window.print()">
                     <i class="fas fa-print"></i> Print Menu
                 </button>
             </div>
-            <p class="access-note">If you can't see the menu above, <a href="menú ray tamaño carta-1.pdf" target="_blank">click here to open it directly</a>.</p>
+            <p class="access-note">If you can't see the menu above, <a href="menu.pdf" target="_blank">click here to open it directly</a>.</p>
         </div>
         
         <div class="card">
@@ -372,12 +372,12 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            // Use the local PDF URL
-            const pdfUrl = 'menú ray tamaño carta-1.pdf';
+            // Use the absolute URL for the PDF
+            const pdfUrl = 'https://rexroy6.github.io/landing_hotel/menu.pdf';
             
-            // Generate QR Code
+            // Generate QR Code with the absolute URL
             const qrcode = new QRCode(document.getElementById("qrcode"), {
-                text: window.location.origin + window.location.pathname.replace('index.html', '') + pdfUrl,
+                text: pdfUrl,
                 width: 200,
                 height: 200,
                 colorDark : "#2c3e50",
@@ -389,6 +389,11 @@
             document.getElementById('downloadQR').addEventListener('click', function() {
                 // Get the QR code canvas element
                 const qrCanvas = document.querySelector('#qrcode canvas');
+                
+                if (!qrCanvas) {
+                    alert('QR code is still generating. Please wait a moment and try again.');
+                    return;
+                }
                 
                 // Create a new canvas for the perfect square
                 const tempCanvas = document.createElement('canvas');
