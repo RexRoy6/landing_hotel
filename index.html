@@ -311,18 +311,18 @@
         <div class="card">
             <h2 class="card-title"><i class="fas fa-utensils"></i> Our Menu</h2>
             <div class="pdf-container">
-                <!-- Using the direct PDF embedding URL format -->
-                <iframe src="https://drive.google.com/file/d/1NsfyUYeJO-6ApVnS4TgMqkT9kgTXcbkT/preview" allow="autoplay"></iframe>
+                <!-- Using the local PDF file -->
+                <iframe src="menú ray tamaño carta-1.pdf" type="application/pdf"></iframe>
             </div>
             <div class="action-buttons">
-                <a href="https://drive.google.com/uc?export=download&id=1NsfyUYeJO-6ApVnS4TgMqkT9kgTXcbkT" class="btn">
+                <a href="menú ray tamaño carta-1.pdf" download class="btn">
                     <i class="fas fa-download"></i> Download Menu
                 </a>
                 <button class="btn btn-secondary" onclick="window.print()">
                     <i class="fas fa-print"></i> Print Menu
                 </button>
             </div>
-            <p class="access-note">If you can't see the menu above, <a href="https://drive.google.com/file/d/1NsfyUYeJO-6ApVnS4TgMqkT9kgTXcbkT/view" target="_blank">click here to open it directly</a>.</p>
+            <p class="access-note">If you can't see the menu above, <a href="menú ray tamaño carta-1.pdf" target="_blank">click here to open it directly</a>.</p>
         </div>
         
         <div class="card">
@@ -372,12 +372,12 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            // Use the direct PDF URL for embedding
-            const pdfUrl = 'https://drive.google.com/file/d/1NsfyUYeJO-6ApVnS4TgMqkT9kgTXcbkT/preview';
+            // Use the local PDF URL
+            const pdfUrl = 'menú ray tamaño carta-1.pdf';
             
             // Generate QR Code
             const qrcode = new QRCode(document.getElementById("qrcode"), {
-                text: pdfUrl,
+                text: window.location.origin + window.location.pathname.replace('index.html', '') + pdfUrl,
                 width: 200,
                 height: 200,
                 colorDark : "#2c3e50",
