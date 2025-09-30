@@ -1,0 +1,27 @@
+name: Deploy HTML to VPS  # Name of your workflow
+
+on:
+  push:
+    branches: [ main ]    # Trigger when code is pushed to main branch
+
+jobs:
+  deploy:                 # Job named "deploy"
+    runs-on: ubuntu-latest  # Run on GitHub's Ubuntu servers
+    
+    steps:
+    # Step 1: Get the code from your repository
+    - name: Checkout code
+      uses: actions/checkout@v4  # Official GitHub action to clone repo
+    
+    # Step 2: Connect to your VPS and run commands
+    - name: Deploy to VPS
+      uses: appleboy/ssh-action@v0.1.8  # SSH action by a community member
+      with:
+        host: ${{ secrets.VPS_HOST }}      # Your VPS IP from secrets
+        username: ${{ secrets.VPS_USERNAME }}  # Your VPS username (admin1)
+        key: ${{ secrets.VPS_SSH_KEY }}    # Private SSH key from secrets
+        script: |                          # Commands to run on your VPS
+          cd /var/www/yourdomain.com
+          git pull origin main
+          sudo systemctl reload nginx
+          echo "✅ HTML deployed successfully!"
