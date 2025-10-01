@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Luxury Hotel Menu | Digital Access</title>
+    <title>La Gondola | Menu</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/dom-to-image/2.6.0/dom-to-image.min.js"></script>
@@ -304,68 +304,63 @@
 <body>
     <div class="container">
         <header>
-            <h1>LUXURY HOTEL & RESORT</h1>
-            <p class="subtitle">Exquisite dining experience with our curated menu selection</p>
+            <h1>Restaurante la Gondola</h1>
+            <p class="subtitle">Mnu para comedor,desayuno y alberca</p>
         </header>
         
         <div class="card">
-            <h2 class="card-title"><i class="fas fa-utensils"></i> Our Menu</h2>
+            <h2 class="card-title"><i class="fas fa-utensils"></i> nuestro  Menu</h2>
             <div class="pdf-container">
                 <!-- Using the local PDF file -->
                 <iframe src="menu.pdf" type="application/pdf"></iframe>
             </div>
             <div class="action-buttons">
                 <a href="menu.pdf" download class="btn">
-                    <i class="fas fa-download"></i> Download Menu
+                    <i class="fas fa-download"></i> descargar Menu
                 </a>
                 <button class="btn btn-secondary" onclick="window.print()">
-                    <i class="fas fa-print"></i> Print Menu
+                    <i class="fas fa-print"></i> imprimir Menu
                 </button>
             </div>
-            <p class="access-note">If you can't see the menu above, <a href="menu.pdf" target="_blank">click here to open it directly</a>.</p>
+            <p class="access-note">Si no se puede ver el menu, <a href="menu.pdf" target="_blank">click aqui para verlo</a>.</p>
         </div>
         
         <div class="card">
-            <h2 class="card-title"><i class="fas fa-qrcode"></i> QR Code Access</h2>
+            <h2 class="card-title"><i class="fas fa-qrcode"></i> codigo QR para menu</h2>
             <div class="qr-section">
                 <div id="qrcode"></div>
-                <p>Scan this code to access our menu directly on your mobile device</p>
+                <p>escanea este codigo para ver el menu</p>
                 
                 <div class="action-buttons">
                     <button id="downloadQR" class="btn btn-success">
-                        <i class="fas fa-download"></i> Download QR Code
+                        <i class="fas fa-download"></i> descargar codigo QR
                     </button>
                 </div>
-                <p class="download-info">Download the QR code to print and display in your hotel</p>
+                <p class="download-info">descargar codigo  QR  para imprimir</p>
             </div>
             
             <div class="instructions">
-                <h3 class="card-title"><i class="fas fa-info-circle"></i> How to Use</h3>
+                <h3 class="card-title"><i class="fas fa-info-circle"></i> Como usar</h3>
                 <ol>
-                    <li>Open your smartphone's camera app</li>
-                    <li>Point it at the QR code shown above</li>
-                    <li>Tap the notification that appears on your screen</li>
-                    <li>The menu will open in your browser instantly</li>
+                    <li>Abre la camara de tu celular</li>
+                    <li>Apunta a el codigo QR</li>
+                    <li>Selecciona la notificacion que aparece en tu pantalla</li>
+                    <li>El menu deberia de abrirse en tu navegador</li>
                 </ol>
                 
                 <div class="info-box">
-                    <p><strong>Professional Tip:</strong> Print and frame the QR code to place on tables, at the reception, and in guest rooms for easy access.</p>
+                    <p><strong>Tip:</strong> Cosgio qr unicamente para el menu.</p>
                 </div>
             </div>
         </div>
         
-        <div class="github-info">
-            <h3 class="card-title"><i class="fab fa-github"></i> Hosted on GitHub Pages</h3>
-            <p>This menu is hosted for free using GitHub Pages, providing reliable and fast access for your guests from anywhere in the world.</p>
-            <p>To update the menu, simply upload a new PDF file and update the URL in the code.</p>
-        </div>
         
         <footer>
-            <p>© 2023 Luxury Hotel & Resort. All rights reserved.</p>
+            <p>© 2025 RCLF. All rights reserved.</p>
             <div class="hotel-contact">
-                <div><i class="fas fa-phone"></i> +1 (555) 123-4567</div>
+                <div><i class="fas fa-phone"></i> +526566296000</div>
                 <div><i class="fas fa-envelope"></i> info@luxuryhotel.com</div>
-                <div><i class="fas fa-map-marker-alt"></i> 123 Luxury Avenue, Resort City</div>
+                <div><i class="fas fa-map-marker-alt"></i> Av. Paseo Triunfo de la República 3745, Zona Pronaf Condominio La Plata, 32310 Juárez, Chih.</div>
             </div>
         </footer>
     </div>
@@ -373,7 +368,7 @@
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             // Use the absolute URL for the PDF
-            const pdfUrl = 'https://rexroy6.github.io/landing_hotel/menu.pdf';
+            const pdfUrl = 'http://178.128.7.189/landing_hotel/menu.pdf';
             
             // Generate QR Code with the absolute URL
             const qrcode = new QRCode(document.getElementById("qrcode"), {
