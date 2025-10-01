@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -17,17 +18,17 @@
             --dark: #333;
             --gray: #7f8c8d;
             --white: #ffffff;
-            --shadow: 0 4px 20px rgba(0,0,0,0.08);
+            --shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
             --border-radius: 12px;
         }
-        
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
-        
+
         body {
             background: linear-gradient(135deg, var(--light) 0%, #e3dfd7 100%);
             color: var(--dark);
@@ -38,7 +39,7 @@
             align-items: center;
             padding: 20px;
         }
-        
+
         .container {
             width: 100%;
             max-width: 1200px;
@@ -47,13 +48,13 @@
             grid-template-columns: 1fr 1fr;
             gap: 30px;
         }
-        
+
         @media (max-width: 900px) {
             .container {
                 grid-template-columns: 1fr;
             }
         }
-        
+
         header {
             grid-column: 1 / -1;
             text-align: center;
@@ -66,7 +67,7 @@
             position: relative;
             overflow: hidden;
         }
-        
+
         header::before {
             content: '';
             position: absolute;
@@ -76,14 +77,14 @@
             height: 4px;
             background: var(--accent);
         }
-        
+
         h1 {
             font-size: 2.8rem;
             margin-bottom: 15px;
             font-weight: 300;
             letter-spacing: 1px;
         }
-        
+
         .subtitle {
             color: var(--light);
             font-size: 1.2rem;
@@ -91,7 +92,7 @@
             max-width: 600px;
             margin: 0 auto;
         }
-        
+
         .card {
             background: var(--white);
             border-radius: var(--border-radius);
@@ -100,11 +101,11 @@
             height: fit-content;
             transition: transform 0.3s ease;
         }
-        
+
         .card:hover {
             transform: translateY(-5px);
         }
-        
+
         .card-title {
             font-size: 1.5rem;
             color: var(--primary);
@@ -114,27 +115,27 @@
             display: flex;
             align-items: center;
         }
-        
+
         .card-title i {
             margin-right: 12px;
             color: var(--secondary);
         }
-        
+
         .pdf-container {
             width: 100%;
             height: 500px;
             border: 1px solid #e0e0e0;
             border-radius: 8px;
             overflow: hidden;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
         }
-        
+
         .pdf-container iframe {
             width: 100%;
             height: 100%;
             border: none;
         }
-        
+
         .qr-section {
             display: flex;
             flex-direction: column;
@@ -143,13 +144,13 @@
             padding: 20px;
             text-align: center;
         }
-        
+
         #qrcode {
             margin: 20px 0;
             padding: 15px;
             background: var(--white);
             border-radius: 10px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
             position: relative;
             width: 230px;
             height: 230px;
@@ -157,12 +158,12 @@
             align-items: center;
             justify-content: center;
         }
-        
+
         #qr-canvas {
             width: 200px !important;
             height: 200px !important;
         }
-        
+
         .action-buttons {
             display: flex;
             gap: 15px;
@@ -170,7 +171,7 @@
             flex-wrap: wrap;
             justify-content: center;
         }
-        
+
         .btn {
             display: inline-flex;
             align-items: center;
@@ -184,47 +185,47 @@
             border: none;
             cursor: pointer;
         }
-        
+
         .btn:hover {
             background: var(--secondary);
             transform: translateY(-2px);
         }
-        
+
         .btn i {
             margin-right: 8px;
         }
-        
+
         .btn-secondary {
             background: var(--light);
             color: var(--dark);
         }
-        
+
         .btn-secondary:hover {
             background: #e8e4db;
         }
-        
+
         .btn-success {
             background: #27ae60;
         }
-        
+
         .btn-success:hover {
             background: #219653;
         }
-        
+
         .instructions {
             margin-top: 30px;
         }
-        
+
         .instructions ol {
             padding-left: 20px;
             margin: 15px 0;
         }
-        
+
         .instructions li {
             margin-bottom: 12px;
             line-height: 1.5;
         }
-        
+
         .info-box {
             background: #f9f9f9;
             border-left: 4px solid var(--accent);
@@ -232,7 +233,7 @@
             margin: 20px 0;
             border-radius: 4px;
         }
-        
+
         .github-info {
             background: #f5f5f5;
             border-radius: var(--border-radius);
@@ -240,7 +241,7 @@
             margin-top: 30px;
             grid-column: 1 / -1;
         }
-        
+
         footer {
             grid-column: 1 / -1;
             text-align: center;
@@ -250,7 +251,7 @@
             font-size: 0.9rem;
             border-top: 1px solid #eee;
         }
-        
+
         .hotel-contact {
             display: flex;
             justify-content: center;
@@ -258,58 +259,61 @@
             margin-top: 15px;
             flex-wrap: wrap;
         }
-        
+
         .hotel-contact div {
             display: flex;
             align-items: center;
             gap: 8px;
         }
-        
+
         .access-note {
             color: var(--accent);
             font-weight: 600;
             margin-top: 15px;
             text-align: center;
         }
-        
+
         .download-info {
             margin-top: 15px;
             font-size: 0.9rem;
             color: var(--gray);
             text-align: center;
         }
-        
+
         /* Print styles */
         @media print {
             body {
                 background: white;
             }
-            
+
             .container {
                 grid-template-columns: 1fr;
                 max-width: 100%;
             }
-            
+
             .card {
                 box-shadow: none;
                 border: 1px solid #ddd;
             }
-            
-            .action-buttons, footer, .github-info {
+
+            .action-buttons,
+            footer,
+            .github-info {
                 display: none;
             }
         }
     </style>
 </head>
+
 <body>
     <div class="container">
         <header>
             <h1>Restaurante la Gondola</h1>
             <p class="subtitle">Mnu para comedor,desayuno y alberca</p>
         </header>
-        
+
         <div class="card">
-            <h2 class="card-title"><i class="fas fa-utensils"></i> nuestro  Menu</h2>
+            <h2 class="card-title"><i class="fas fa-utensils"></i> nuestro Menu</h2>
             <div class="pdf-container">
                 <!-- Using the local PDF file -->
                 <iframe src="menu.pdf" type="application/pdf"></iframe>
@@ -322,23 +326,24 @@
                     <i class="fas fa-print"></i> imprimir Menu
                 </button>
             </div>
-            <p class="access-note">Si no se puede ver el menu, <a href="menu.pdf" target="_blank">click aqui para verlo</a>.</p>
+            <p class="access-note">Si no se puede ver el menu, <a href="menu.pdf" target="_blank">click aqui para
+                    verlo</a>.</p>
         </div>
-        
+
         <div class="card">
             <h2 class="card-title"><i class="fas fa-qrcode"></i> codigo QR para menu</h2>
             <div class="qr-section">
                 <div id="qrcode"></div>
                 <p>escanea este codigo para ver el menu</p>
-                
+
                 <div class="action-buttons">
                     <button id="downloadQR" class="btn btn-success">
                         <i class="fas fa-download"></i> descargar codigo QR
                     </button>
                 </div>
-                <p class="download-info">descargar codigo  QR  para imprimir</p>
+                <p class="download-info">descargar codigo QR para imprimir</p>
             </div>
-            
+
             <div class="instructions">
                 <h3 class="card-title"><i class="fas fa-info-circle"></i> Como usar</h3>
                 <ol>
@@ -347,73 +352,77 @@
                     <li>Selecciona la notificacion que aparece en tu pantalla</li>
                     <li>El menu deberia de abrirse en tu navegador</li>
                 </ol>
-                
+
                 <div class="info-box">
                     <p><strong>Tip:</strong> Cosgio qr unicamente para el menu.</p>
                 </div>
             </div>
         </div>
-        
-        
+
+
         <footer>
             <p>© 2025 RCLF. All rights reserved.</p>
             <div class="hotel-contact">
                 <div><i class="fas fa-phone"></i> +526566296000</div>
                 <div><i class="fas fa-envelope"></i> info@luxuryhotel.com</div>
-                <div><i class="fas fa-map-marker-alt"></i> Av. Paseo Triunfo de la República 3745, Zona Pronaf Condominio La Plata, 32310 Juárez, Chih.</div>
+                <div><i class="fas fa-map-marker-alt"></i> Av. Paseo Triunfo de la República 3745, Zona Pronaf
+                    Condominio La Plata, 32310 Juárez, Chih.</div>
             </div>
         </footer>
     </div>
 
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // Use the absolute URL for the PDF
-            const pdfUrl = '/menu.pdf';
-            
+        // Use the absolute URL for the PDF
+        document.addEventListener('DOMContentLoaded', function () {
+            // Dynamically get the current domain
+            const baseUrl = window.location.origin;
+            const pdfUrl = `${baseUrl}/menu.pdf`;
+
             // Generate QR Code with the absolute URL
             const qrcode = new QRCode(document.getElementById("qrcode"), {
                 text: pdfUrl,
                 width: 200,
                 height: 200,
-                colorDark : "#2c3e50",
-                colorLight : "#ffffff",
-                correctLevel : QRCode.CorrectLevel.H
+                colorDark: "#2c3e50",
+                colorLight: "#ffffff",
+                correctLevel: QRCode.CorrectLevel.H
             });
-            
+
             // Add download functionality for QR code
-            document.getElementById('downloadQR').addEventListener('click', function() {
+            document.getElementById('downloadQR').addEventListener('click', function () {
                 // Get the QR code canvas element
                 const qrCanvas = document.querySelector('#qrcode canvas');
-                
+
                 if (!qrCanvas) {
                     alert('QR code is still generating. Please wait a moment and try again.');
                     return;
                 }
-                
+
                 // Create a new canvas for the perfect square
                 const tempCanvas = document.createElement('canvas');
                 const tempCtx = tempCanvas.getContext('2d');
-                
+
                 // Set dimensions for perfect square
                 const size = 250;
                 tempCanvas.width = size;
                 tempCanvas.height = size;
-                
+
                 // Fill with white background
                 tempCtx.fillStyle = '#ffffff';
                 tempCtx.fillRect(0, 0, size, size);
-                
+
                 // Draw the QR code in the center
                 const qrSize = 200;
                 const offset = (size - qrSize) / 2;
                 tempCtx.drawImage(qrCanvas, offset, offset, qrSize, qrSize);
-                
+
                 // Convert to blob and download
-                tempCanvas.toBlob(function(blob) {
+                tempCanvas.toBlob(function (blob) {
                     saveAs(blob, 'hotel-menu-qr-code.png');
                 });
             });
         });
     </script>
 </body>
+
 </html>
