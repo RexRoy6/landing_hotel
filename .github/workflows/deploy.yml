@@ -12,18 +12,17 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v4
 
-    - name: Debug SSH Key
+    - name: Deploy to VPS
       run: |
-        echo "SSH Key:"
-        echo "${{ secrets.VPS_SSH_KEY }}"
-        echo "---"
         mkdir -p ~/.ssh
         echo "${{ secrets.VPS_SSH_KEY }}" > ~/.ssh/deploy_key
-        echo "Key file content:"
-        cat ~/.ssh/deploy_key
-        echo "---"
         chmod 600 ~/.ssh/deploy_key
+        ssh-keyscan -H ${{ secrets.VPS_HOST }} >> ~/.ssh/known_hosts
         
-    - name: Test SSH Key
-      run: |
-        ssh-keygen -l -f ~/.ssh/deploy_key
+        # The actual deployment commands
+        ssh -i ~/.ssh/deploy_key -o StrictHostKeyChecking=no ${{ secrets.VPS_USERNAME }}@${{ secrets.VPS_HOST }} "
+          cd /opt/landing_hotel
+          git pull origin main
+          sudo systemctl reload nginx
+          echo '✅ HTML deployed successfully!'
+        "
