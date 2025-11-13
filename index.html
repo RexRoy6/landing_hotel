@@ -347,34 +347,33 @@
                     verlo</a>.</p>
         </div>
 
-        <div class="card">
-            <h2 class="card-title"><i class="fas fa-qrcode"></i> codigo QR para menu</h2>
-            <div class="qr-section">
-                <div id="qrcode"></div>
-                <p>escanea este codigo para ver el menu</p>
-
-                <div class="action-buttons">
-                    <button id="downloadQR" class="btn btn-success">
-                        <i class="fas fa-download"></i> descargar codigo QR
-                    </button>
-                </div>
-                <p class="download-info">descargar codigo QR para imprimir</p>
-            </div>
-
-            <div class="instructions">
-                <h3 class="card-title"><i class="fas fa-info-circle"></i> Como usar</h3>
-                <ol>
-                    <li>Abre la camara de tu celular</li>
-                    <li>Apunta a el codigo QR</li>
-                    <li>Selecciona la notificacion que aparece en tu pantalla</li>
-                    <li>El menu deberia de abrirse en tu navegador</li>
-                </ol>
-
-                <div class="info-box">
-                    <p><strong>Tip:</strong> Codigo QR unicamente para el menu.</p>
-                </div>
-            </div>
+        <!-- Menu QR Code -->
+<div class="card">
+    <h2 class="card-title"><i class="fas fa-qrcode"></i> Código QR para Menú</h2>
+    <div class="qr-section">
+        <div id="qrcode-menu"></div>
+        <p>Escanea este código para ver el menú</p>
+        <div class="action-buttons">
+            <button id="downloadQR-menu" class="btn btn-success">
+                <i class="fas fa-download"></i> Descargar código QR
+            </button>
         </div>
+    </div>
+</div>
+
+<!-- Alberca QR Code -->
+<div class="card">
+    <h2 class="card-title"><i class="fas fa-qrcode"></i> Código QR para Alberca</h2>
+    <div class="qr-section">
+        <div id="qrcode-alberca"></div>
+        <p>Escanea este código para ver información de la alberca</p>
+        <div class="action-buttons">
+            <button id="downloadQR-alberca" class="btn btn-success">
+                <i class="fas fa-download"></i> Descargar código QR
+            </button>
+        </div>
+    </div>
+</div>
 
 
         <footer>
@@ -389,57 +388,74 @@
     </div>
 
     <script>
-        // Use the absolute URL for the PDF
-        document.addEventListener('DOMContentLoaded', function () {
-            // Dynamically get the current domain
-            const baseUrl = window.location.origin;
-            const pdfUrl = `${baseUrl}/menu.pdf`;
+document.addEventListener('DOMContentLoaded', function () {
+    const baseUrl = window.location.origin;
+    
+    // Configuration for different PDFs
+    const pdfConfigs = {
+        'menu': {
+            pdfName: 'menu.pdf',
+            qrContainerId: 'qrcode-menu',
+            downloadBtnId: 'downloadQR-menu',
+            downloadFilename: 'hotel-menu-qr-code.png'
+        },
+        'alberca': {
+            pdfName: 'menu_alberca.pdf', 
+            qrContainerId: 'qrcode-alberca',
+            downloadBtnId: 'downloadQR-alberca',
+            downloadFilename: 'alberca-qr-code.png'
+        }
+        // Add more PDFs here as needed
+    };
 
-            // Generate QR Code with the absolute URL
-            const qrcode = new QRCode(document.getElementById("qrcode"), {
-                text: pdfUrl,
-                width: 200,
-                height: 200,
-                colorDark: "#2c3e50",
-                colorLight: "#ffffff",
-                correctLevel: QRCode.CorrectLevel.H
-            });
-
-            // Add download functionality for QR code
-            document.getElementById('downloadQR').addEventListener('click', function () {
-                // Get the QR code canvas element
-                const qrCanvas = document.querySelector('#qrcode canvas');
-
-                if (!qrCanvas) {
-                    alert('QR code is still generating. Please wait a moment and try again.');
-                    return;
-                }
-
-                // Create a new canvas for the perfect square
-                const tempCanvas = document.createElement('canvas');
-                const tempCtx = tempCanvas.getContext('2d');
-
-                // Set dimensions for perfect square
-                const size = 250;
-                tempCanvas.width = size;
-                tempCanvas.height = size;
-
-                // Fill with white background
-                tempCtx.fillStyle = '#ffffff';
-                tempCtx.fillRect(0, 0, size, size);
-
-                // Draw the QR code in the center
-                const qrSize = 200;
-                const offset = (size - qrSize) / 2;
-                tempCtx.drawImage(qrCanvas, offset, offset, qrSize, qrSize);
-
-                // Convert to blob and download
-                tempCanvas.toBlob(function (blob) {
-                    saveAs(blob, 'hotel-menu-qr-code.png');
-                });
-            });
+    // Initialize QR codes for all configurations
+    for (const [key, config] of Object.entries(pdfConfigs)) {
+        const pdfUrl = `${baseUrl}/${config.pdfName}`;
+        
+        // Generate QR Code
+        const qrcode = new QRCode(document.getElementById(config.qrContainerId), {
+            text: pdfUrl,
+            width: 200,
+            height: 200,
+            colorDark: "#2c3e50",
+            colorLight: "#ffffff",
+            correctLevel: QRCode.CorrectLevel.H
         });
-    </script>
+
+        // Add download functionality
+        document.getElementById(config.downloadBtnId).addEventListener('click', function () {
+            downloadQRCode(config.qrContainerId, config.downloadFilename);
+        });
+    }
+
+    // Reusable download function
+    function downloadQRCode(containerId, filename) {
+        const qrCanvas = document.querySelector(`#${containerId} canvas`);
+        
+        if (!qrCanvas) {
+            alert('QR code is still generating. Please wait a moment and try again.');
+            return;
+        }
+
+        const tempCanvas = document.createElement('canvas');
+        const tempCtx = tempCanvas.getContext('2d');
+        const size = 250;
+        tempCanvas.width = size;
+        tempCanvas.height = size;
+
+        tempCtx.fillStyle = '#ffffff';
+        tempCtx.fillRect(0, 0, size, size);
+
+        const qrSize = 200;
+        const offset = (size - qrSize) / 2;
+        tempCtx.drawImage(qrCanvas, offset, offset, qrSize, qrSize);
+
+        tempCanvas.toBlob(function (blob) {
+            saveAs(blob, filename);
+        });
+    }
+});
+</script>
 </body>
 
 </html>
