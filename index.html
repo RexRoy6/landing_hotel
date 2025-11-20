@@ -347,6 +347,24 @@
                     verlo</a>.</p>
         </div>
 
+        <div class="card">
+            <h2 class="card-title"><i class="fas fa-utensils"></i>Menu viva aerobus</h2>
+            <div class="pdf-container">
+                <!-- Using the local PDF file -->
+                <iframe src="menu_viva_aerobus.pdf?v=2" type="application/pdf"></iframe>
+            </div>
+            <div class="action-buttons">
+                <a href="menu_viva_aerobus.pdf?v=2" download class="btn">
+                    <i class="fas fa-download"></i> descargar viva aerobus
+                </a>
+                <button class="btn btn-secondary" onclick="window.print()">
+                    <i class="fas fa-print"></i> imprimir viva aerobus
+                </button>
+            </div>
+            <p class="access-note">Si no se puede ver el menu, <a href="menu_viva_aerobus.pdf?v=2" target="_blank">click aqui para
+                    verlo</a>.</p>
+        </div>
+
         <!-- Menu QR Code -->
 <div class="card">
     <h2 class="card-title"><i class="fas fa-qrcode"></i> Código QR para Menú</h2>
@@ -374,6 +392,21 @@
         </div>
     </div>
 </div>
+
+<!-- vivaerobus qr -->
+<div class="card">
+    <h2 class="card-title"><i class="fas fa-qrcode"></i> Código QR para viva aerobus</h2>
+    <div class="qr-section">
+        <div id="qrcode-viva_aerobus"></div>
+        <p>Escanea este código para ver información de menu  viva aerobus</p>
+        <div class="action-buttons">
+            <button id="downloadQR-viva_aerobus" class="btn btn-success">
+                <i class="fas fa-download"></i> Descargar código QR
+            </button>
+        </div>
+    </div>
+</div>
+
 
 
         <footer>
@@ -404,6 +437,12 @@ document.addEventListener('DOMContentLoaded', function () {
             qrContainerId: 'qrcode-alberca',
             downloadBtnId: 'downloadQR-alberca',
             downloadFilename: 'alberca-qr-code.png'
+        },
+        'viva_aerobus': {
+            pdfName: 'menu_viva_aerobus.pdf?v=2', 
+            qrContainerId: 'qrcode-viva_aerobus',
+            downloadBtnId: 'downloadQR-viva_aerobus',
+            downloadFilename: 'viva_aerobus-qr-code.png'
         }
         // Add more PDFs here as needed
     };
